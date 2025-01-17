@@ -10,6 +10,7 @@ import {
   Paper,
   Avatar,
 } from '@mui/material';
+import { styled } from '@mui/material/styles';
 // import { ScoreData } from './types';
 
 const data: any[] = [
@@ -87,6 +88,35 @@ const data: any[] = [
   },
 ];
 
+const StyledTableContainer = styled(TableContainer)({
+  maxWidth: 800,
+  margin: '0 auto',
+  background: 'transparent',
+  '& .MuiPaper-root': {
+    background: 'transparent',
+    boxShadow: 'none',
+  }
+});
+
+const StyledTableCell = styled(TableCell)({
+  color: '#fff',
+  fontSize: '1rem',
+  borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+  '&.MuiTableCell-head': {
+    backgroundColor: 'rgba(0, 0, 0, 0.2)',
+    fontWeight: 'bold',
+    fontSize: '1.1rem',
+  }
+});
+
+const StyledTableRow = styled(TableRow)({
+  backgroundColor: 'rgba(255, 255, 255, 0.05)',
+  '&:hover': {
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+  },
+});
+
+
 function App() {
   const totals = data.reduce(
     (acc, row) => ({
@@ -100,30 +130,16 @@ function App() {
   );
 
   return (
-    <div className="min-h-screen w-full bg-[url('/table.png')] bg-contain p-4 sm:p-8">
+    <div style={{    backgroundSize: '100vw 100vh'}} className="min-h-screen w-full bg-[url('/table.png')] bg-no-repeat bg-cover bg-center p-4 sm:p-8">
       <div className="mx-auto overflow-hidden">
-        <TableContainer 
-          component={Paper} 
-          sx={{ 
-            // backgroundColor: '#1a1a2e',
-            borderRadius: '16px',
-            '& .MuiTableCell-root': {
-              borderBottom: '1px solid rgba(0, 255, 255, 0.1)',
-              whiteSpace: 'nowrap',
-              padding: {
-                xs: '8px',
-                sm: '16px'
-              }
-            }
-          }}
-        >
-          <Table sx={{ minWidth: 650 }} size="small">
+        <StyledTableContainer component={Paper}>
+          <Table>
             <TableHead>
               <TableRow>
-                <TableCell 
-                  colSpan={7} 
-                  sx={{ 
-                    // backgroundColor: '#1a1a2e',
+                <TableCell
+                  colSpan={7}
+                  sx={{
+                    backgroundColor: 'rgba(0, 0, 0, 0.2)',
                     borderBottom: 'none',
                     padding: {
                       xs: '8px',
@@ -137,11 +153,12 @@ function App() {
                 </TableCell>
               </TableRow>
               <TableRow>
-                <TableCell 
-                  colSpan={7} 
-                  sx={{ 
-                    backgroundColor: 'rgba(0, 0, 0, 0.05)',
-                    backgroundBlendMode: 'overlay',
+                <TableCell
+                  colSpan={7}
+                  sx={{
+                    backgroundColor: 'rgba(0, 0, 0, 0.34)',
+                    color: '#fff',
+                    fontWeight: 700,
                     borderBottom: 'none',
                     padding: {
                       xs: '8px',
@@ -150,14 +167,14 @@ function App() {
                   }}
                 >
                   <div className="flex items-center justify-between overflow-x-auto">
-                    <div className="text-[#1a1a2e] font-mono text-xs sm:text-sm tracking-wider whitespace-nowrap">
+                    <div className="text-[#fff] font-mono text-xs sm:text-sm tracking-wider whitespace-nowrap">
                       SCORE TABLE
                     </div>
                     <div className="flex gap-2 sm:gap-4 ml-4">
                       {['SCORE#', 'X', 'IMPRESSIONS', 'POSTS', 'COMMENTS', 'RE-TWEETS', 'TG MSGS'].map((header) => (
-                        <div 
+                        <div
                           key={header}
-                          className="text-[#1a1a2e] font-mono text-xs sm:text-sm tracking-wider whitespace-nowrap"
+                          className="text-[#fff] font-mono text-xs sm:text-sm tracking-wider whitespace-nowrap"
                         >
                           {header}
                         </div>
@@ -171,21 +188,21 @@ function App() {
               {data.map((row) => (
                 <TableRow
                   key={row.score}
-                  sx={{ 
-                    '&:nth-of-type(odd)': { backgroundColor: '#0098BA' },
-                    '&:nth-of-type(even)': { backgroundColor: 'transparent' },
-                    '&:hover': { backgroundColor: '#3a3a5a' },
+                  sx={{
+                    '&:nth-of-type(odd)': { backgroundColor: 'rgba(0, 152, 186, 1)', border: '1px solid rgba(117, 255, 134, 1)' },
+                    '&:nth-of-type(even)': { backgroundColor: 'rgba(7, 31, 10, 0)', border: '1px solid rgba(117, 255, 134, 1)' },
+                    '&:hover': { backgroundColor: 'rgba(0,0,0,0.3)', border: '2px solid rgba(117, 255, 134, 1)' },
                     transition: 'background-color 0.2s'
                   }}
                 >
                   <TableCell sx={{ color: '#00ffff' }}>{row.score}</TableCell>
                   <TableCell sx={{ color: 'white' }}>
                     <div className="flex items-center gap-2">
-                      <Avatar 
-                        src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${row.username}`} 
-                        sx={{ 
-                          width: { xs: 20, sm: 24 }, 
-                          height: { xs: 20, sm: 24 } 
+                      <Avatar
+                        src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${row.username}`}
+                        sx={{
+                          width: { xs: 20, sm: 24 },
+                          height: { xs: 20, sm: 24 }
                         }}
                       />
                       <span className="text-xs sm:text-base">{row.username}</span>
@@ -211,7 +228,7 @@ function App() {
             </TableBody>
             <TableFooter>
               <TableRow
-                sx={{ 
+                sx={{
                   backgroundColor: '#00ffff',
                   '& .MuiTableCell-root': {
                     borderBottom: 'none',
@@ -245,7 +262,7 @@ function App() {
               </TableRow>
             </TableFooter>
           </Table>
-        </TableContainer>
+        </StyledTableContainer>
       </div>
     </div>
   );
