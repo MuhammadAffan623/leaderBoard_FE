@@ -100,12 +100,12 @@ function App() {
   );
 
   return (
-    <div className="min-h-screen bg-[#1a1a2e] p-4 sm:p-8">
-      <div className="max-w-[1200px] mx-auto overflow-hidden">
+    <div className="min-h-screen w-full bg-[url('/table.png')] bg-contain p-4 sm:p-8">
+      <div className="mx-auto overflow-hidden">
         <TableContainer 
           component={Paper} 
           sx={{ 
-            backgroundColor: '#1a1a2e',
+            // backgroundColor: '#1a1a2e',
             borderRadius: '16px',
             '& .MuiTableCell-root': {
               borderBottom: '1px solid rgba(0, 255, 255, 0.1)',
@@ -123,7 +123,7 @@ function App() {
                 <TableCell 
                   colSpan={7} 
                   sx={{ 
-                    backgroundColor: '#1a1a2e',
+                    // backgroundColor: '#1a1a2e',
                     borderBottom: 'none',
                     padding: {
                       xs: '8px',
@@ -140,7 +140,8 @@ function App() {
                 <TableCell 
                   colSpan={7} 
                   sx={{ 
-                    backgroundColor: '#00ffff',
+                    backgroundColor: 'rgba(0, 0, 0, 0.05)',
+                    backgroundBlendMode: 'overlay',
                     borderBottom: 'none',
                     padding: {
                       xs: '8px',
@@ -171,8 +172,8 @@ function App() {
                 <TableRow
                   key={row.score}
                   sx={{ 
-                    '&:nth-of-type(odd)': { backgroundColor: '#2a2a4a' },
-                    '&:nth-of-type(even)': { backgroundColor: '#1a1a2e' },
+                    '&:nth-of-type(odd)': { backgroundColor: '#0098BA' },
+                    '&:nth-of-type(even)': { backgroundColor: 'transparent' },
                     '&:hover': { backgroundColor: '#3a3a5a' },
                     transition: 'background-color 0.2s'
                   }}
